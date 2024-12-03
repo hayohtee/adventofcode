@@ -53,6 +53,7 @@ func main() {
 
 	
 	fmt.Println(calculateTotalDistance(pair1, pair2))
+	fmt.Println(calculateSimilarity(pair1, pair2))
 }
 
 func calculateTotalDistance(pair1, pair2 []int) int  {
@@ -67,4 +68,24 @@ func calculateTotalDistance(pair1, pair2 []int) int  {
 	}
 
 	return totalDistance
+}
+
+
+func calculateSimilarity(pair1, pair2 []int) int {
+	totalSimilarity := 0
+	
+	pair2Map := make(map[int]int)
+
+	for _, v := range pair2 {
+		pair2Map[v]++
+	}
+
+	for _, v := range pair1 {
+		value, ok := pair2Map[v]
+		if ok {
+			totalSimilarity += v * value
+		} 
+	}
+
+	return totalSimilarity
 }
